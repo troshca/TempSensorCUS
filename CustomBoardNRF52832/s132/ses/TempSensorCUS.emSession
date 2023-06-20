@@ -1,0 +1,79 @@
+<!DOCTYPE CrossStudio_Session_File>
+<session>
+ <Bookmarks/>
+ <Breakpoints groups="Breakpoints" active_group="Breakpoints">
+  <Exceptions set="MemManage;UsageFault_Coprocessor;UsageFault_CheckingError;UsageFault_StateError;BusFault;ExceptionEntryReturnFault;HardFault"/>
+ </Breakpoints>
+ <ExecutionProfileWindow/>
+ <FrameBufferWindow>
+  <FrameBufferWindow bufferHeight="-1" addressSpace="" addressText="" bufferWidth="-1"/>
+ </FrameBufferWindow>
+ <Memory1>
+  <MemoryWindow addressSpace="" dataSize="1" autoEvaluate="0" viewMode="0" viewType="4" addressOrder="0" columnsText="" refreshPeriod="0" name="TempSensorCUS_Debug" sizeText="" addressText=""/>
+ </Memory1>
+ <Memory2>
+  <MemoryWindow addressSpace="" dataSize="1" autoEvaluate="0" viewMode="0" viewType="4" addressOrder="0" columnsText="" refreshPeriod="0" name="TempSensorCUS_Debug" sizeText="" addressText=""/>
+ </Memory2>
+ <Memory3>
+  <MemoryWindow addressSpace="" dataSize="1" autoEvaluate="0" viewMode="0" viewType="4" addressOrder="0" columnsText="" refreshPeriod="0" name="TempSensorCUS_Debug" sizeText="" addressText=""/>
+ </Memory3>
+ <Memory4>
+  <MemoryWindow addressSpace="" dataSize="1" autoEvaluate="0" viewMode="0" viewType="4" addressOrder="0" columnsText="" refreshPeriod="0" name="TempSensorCUS_Debug" sizeText="" addressText=""/>
+ </Memory4>
+ <Project>
+  <ProjectSessionItem path="TempSensorCUS"/>
+  <ProjectSessionItem path="TempSensorCUS;TempSensorCUS"/>
+  <ProjectSessionItem path="TempSensorCUS;TempSensorCUS;Application"/>
+  <ProjectSessionItem path="TempSensorCUS;TempSensorCUS;Drivers"/>
+  <ProjectSessionItem path="TempSensorCUS;TempSensorCUS;nRF_Libraries"/>
+  <ProjectSessionItem path="TempSensorCUS;TempSensorCUS;nRF_Segger_RTT"/>
+ </Project>
+ <Register1>
+  <RegisterWindow visibleNodes="CPU - Current Context/r0;CPU - Current Context/r1;CPU - Current Context/r2;CPU - Current Context/r3;CPU - Current Context/r4;CPU - Current Context/r5;CPU - Current Context/r6;CPU - Current Context/r7;CPU - Current Context/r8;CPU - Current Context/r9;CPU - Current Context/r10;CPU - Current Context/r11;CPU - Current Context/r12;CPU - Current Context/sp(r13);CPU - Current Context/lr(r14);CPU - Current Context/pc(r15);CPU - Current Context/apsr;CPU/r0;CPU/r1;CPU/r2;CPU/r3;CPU/r4;CPU/r5;CPU/r6;CPU/r7;CPU/r8;CPU/r9;CPU/r10;CPU/r11;CPU/r12;CPU/sp(r13);CPU/lr(r14);CPU/pc(r15);CPU/xpsr;CPU/MSP;CPU/PSP;CPU/PRIMASK;CPU/BASEPRI;CPU/FAULTMASK;CPU/CONTROL;CPU/internal" binaryNodes="" asciiNodes="" openNodes="CPU - Current Context" name="TempSensorCUS_Debug" decimalNodes="" octalNodes="" unsignedNodes=""/>
+ </Register1>
+ <Register2>
+  <RegisterWindow visibleNodes="CPU - Current Context/r0;CPU - Current Context/r1;CPU - Current Context/r2;CPU - Current Context/r3;CPU - Current Context/r4;CPU - Current Context/r5;CPU - Current Context/r6;CPU - Current Context/r7;CPU - Current Context/r8;CPU - Current Context/r9;CPU - Current Context/r10;CPU - Current Context/r11;CPU - Current Context/r12;CPU - Current Context/sp(r13);CPU - Current Context/lr(r14);CPU - Current Context/pc(r15);CPU - Current Context/apsr;CPU/r0;CPU/r1;CPU/r2;CPU/r3;CPU/r4;CPU/r5;CPU/r6;CPU/r7;CPU/r8;CPU/r9;CPU/r10;CPU/r11;CPU/r12;CPU/sp(r13);CPU/lr(r14);CPU/pc(r15);CPU/xpsr;CPU/MSP;CPU/PSP;CPU/PRIMASK;CPU/BASEPRI;CPU/FAULTMASK;CPU/CONTROL;CPU/internal" binaryNodes="" asciiNodes="" openNodes="CPU - Current Context" name="TempSensorCUS_Debug" decimalNodes="" octalNodes="" unsignedNodes=""/>
+ </Register2>
+ <Register3>
+  <RegisterWindow visibleNodes="CPU - Current Context/r0;CPU - Current Context/r1;CPU - Current Context/r2;CPU - Current Context/r3;CPU - Current Context/r4;CPU - Current Context/r5;CPU - Current Context/r6;CPU - Current Context/r7;CPU - Current Context/r8;CPU - Current Context/r9;CPU - Current Context/r10;CPU - Current Context/r11;CPU - Current Context/r12;CPU - Current Context/sp(r13);CPU - Current Context/lr(r14);CPU - Current Context/pc(r15);CPU - Current Context/apsr;CPU/r0;CPU/r1;CPU/r2;CPU/r3;CPU/r4;CPU/r5;CPU/r6;CPU/r7;CPU/r8;CPU/r9;CPU/r10;CPU/r11;CPU/r12;CPU/sp(r13);CPU/lr(r14);CPU/pc(r15);CPU/xpsr;CPU/MSP;CPU/PSP;CPU/PRIMASK;CPU/BASEPRI;CPU/FAULTMASK;CPU/CONTROL;CPU/internal" binaryNodes="" asciiNodes="" openNodes="CPU - Current Context" name="TempSensorCUS_Debug" decimalNodes="" octalNodes="" unsignedNodes=""/>
+ </Register3>
+ <Register4>
+  <RegisterWindow visibleNodes="CPU - Current Context/r0;CPU - Current Context/r1;CPU - Current Context/r2;CPU - Current Context/r3;CPU - Current Context/r4;CPU - Current Context/r5;CPU - Current Context/r6;CPU - Current Context/r7;CPU - Current Context/r8;CPU - Current Context/r9;CPU - Current Context/r10;CPU - Current Context/r11;CPU - Current Context/r12;CPU - Current Context/sp(r13);CPU - Current Context/lr(r14);CPU - Current Context/pc(r15);CPU - Current Context/apsr;CPU/r0;CPU/r1;CPU/r2;CPU/r3;CPU/r4;CPU/r5;CPU/r6;CPU/r7;CPU/r8;CPU/r9;CPU/r10;CPU/r11;CPU/r12;CPU/sp(r13);CPU/lr(r14);CPU/pc(r15);CPU/xpsr;CPU/MSP;CPU/PSP;CPU/PRIMASK;CPU/BASEPRI;CPU/FAULTMASK;CPU/CONTROL;CPU/internal" binaryNodes="" asciiNodes="" openNodes="CPU - Current Context" name="TempSensorCUS_Debug" decimalNodes="" octalNodes="" unsignedNodes=""/>
+ </Register4>
+ <Threads>
+  <ThreadsWindow showLists=""/>
+ </Threads>
+ <TraceWindow>
+  <Trace enabled="Yes"/>
+ </TraceWindow>
+ <Watch1>
+  <Watches active="1" update="Never"/>
+ </Watch1>
+ <Watch2>
+  <Watches active="0" update="Never"/>
+ </Watch2>
+ <Watch3>
+  <Watches active="0" update="Never"/>
+ </Watch3>
+ <Watch4>
+  <Watches active="0" update="Never"/>
+ </Watch4>
+ <Files>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="608" useTextEdit="1" openedFrom="C:/Users/Troshcka/Documents/Nordic/TempSensorCUS/CustomBoardNRF52832/s132/ses/ble_functions.c" path="../../../main.c" left="0" selected="1" top="566" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="9" y="12" useTextEdit="1" path="../../../twi_mng_ds1307.c" left="0" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="15" y="31" useTextEdit="1" path="../../../main.h" left="5" top="31" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="25" y="94" useTextEdit="1" path="../../../twi_mng_ds1307.h" left="0" top="69" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="218" y="27" useTextEdit="1" path="../../../twi_mng_hdc1080.h" left="91" top="3" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="21" y="17" useTextEdit="1" path="../../../twi_mng_hdc1080.c" left="0" top="17" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="196" useTextEdit="1" path="../../../temp_service.c" left="0" top="173" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="56" y="27" useTextEdit="1" path="../../../temp_service.h" left="0" top="18" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="63" y="27" useTextEdit="1" path="TempSensorCUS.emProject" left="0" top="18" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="0" useTextEdit="1" path="../../../SSD1306_fonts.c" left="0" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="22" y="89" useTextEdit="1" path="C:/Nordic/nRF5_SDK_17.1.0_ddde560/components/libraries/util/app_error_weak.c" left="0" top="82" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="445" useTextEdit="1" path="C:/Nordic/nRF5_SDK_17.1.0_ddde560/components/softdevice/s132/headers/ble_gatts.h" left="0" top="445" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="0" useTextEdit="1" path="../config/sdk_config.h" left="0" top="24" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="30" y="189" useTextEdit="1" openedFrom="C:/Users/User/Documents/Nordic/TempSensorCUS/main.c" path="C:/Nordic/nRF5_SDK_17.1.0_ddde560/components/libraries/timer/app_timer.h" left="0" top="177" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="11" y="82" useTextEdit="1" path="C:/Nordic/nRF5_SDK_17.1.0_ddde560/components/boards/boards.h" left="0" top="65" codecName="Default"/>
+ </Files>
+ <EMStudioWindow activeProject="TempSensorCUS" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Debug" sessionSettings="" debugSearchFileMap="" fileDialogInitialDirectory="" debugSearchPath="" autoConnectCapabilities="3711"/>
+</session>

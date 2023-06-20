@@ -1,0 +1,5 @@
+/.vs
+CustomBoardNRF52832/armgcc/_build
+CustomBoardNRF52832/ses/Output
+**/bin
+**/obj
