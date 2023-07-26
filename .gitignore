@@ -3,3 +3,9 @@ CustomBoardNRF52832/armgcc/_build
 CustomBoardNRF52832/ses/Output
 **/bin
 **/obj
+CustomBoardNRF52832/s132/ses/Output/Debug/Exe/TempSensorCUS.hex
+CustomBoardNRF52832/s132/ses/Output/Debug/Exe/TempSensorCUS.elf
+CustomBoardNRF52832/s132/ses/Output/Debug/Exe/TempSensorCUS.ind
+CustomBoardNRF52832/s132/ses/Output/Debug/Exe/TempSensorCUS.ld
+CustomBoardNRF52832/s132/ses/Output/Debug/Exe/TempSensorCUS.map
+CustomBoardNRF52832/s132/ses/TempSensorCUS.emSession

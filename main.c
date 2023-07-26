@@ -11,7 +11,9 @@ APP_TIMER_DEF(m_second_timer_id);
 // RTCDateTime r;
 volatile float temperature;
 volatile uint8_t humidity;
+volatile uint8_t lastHumidity;
 uint16_t temperatureInt;
+uint16_t lastTemperatureInt;
 
 static uint16_t m_conn_handle = BLE_CONN_HANDLE_INVALID; /**< Handle of the current connection. */
 
@@ -32,28 +34,34 @@ static void advertising_start(bool erase_bonds);
  */
 static void main_timer_handler(void *p_context)
 {
-    // DS1307_GetDateTime(&r);
-    HDC1080_Start();
+    HDC1080_CommandStartMeasuring();
     ret_code_t err_code = app_timer_start(m_second_timer_id, APP_TIMER_TICKS(15), NULL);
     APP_ERROR_CHECK(err_code);
-    // nrf_delay_ms(15);
-    // HDC1080_ReceiveData();
-    //  hdc1080_start_measurement((float *)&temp, (uint8_t *)&humi);
-    // NRF_LOG_INFO("Temp " NRF_LOG_FLOAT_MARKER "*C Humidity %d%%\r\n", NRF_LOG_FLOAT(temperature), humidity);
-    // humidity_characteristic_update(&m_temp_service, &humidity);
-    // temperature_characteristic_update(&m_temp_service, &temperatureInt);
 }
 
 /**@brief Timeout handler for the second timer.
  */
 static void second_timer_handler(void *p_context)
 {
-    HDC1080_ReceiveData();
+    temperatureInt &= 0xFFF0;
+    NRF_LOG_INFO("Temperature: %d", temperatureInt);
+    lastTemperatureInt = temperatureInt;
+    lastHumidity = humidity;
+
+    HDC1080_CommandReceiveData();
     // hdc1080_start_measurement((float *)&temp, (uint8_t *)&humi);
     NRF_LOG_INFO("Temp " NRF_LOG_FLOAT_MARKER "*C Humidity %d%%\r\n", NRF_LOG_FLOAT(temperature), humidity);
-    humidity_characteristic_update(&m_temp_service, &humidity);
-    temperature_characteristic_update(&m_temp_service, &temperatureInt);
-    NRF_LOG_INFO("Temperature: %d", temperatureInt);
+
+    if(abs(lastTemperatureInt - temperatureInt) > 0)
+    {
+    NRF_LOG_INFO("new t");
+      temperature_characteristic_update(&m_temp_service, &temperatureInt);
+    }
+    if(abs(lastHumidity - humidity) > 0)
+    {
+    NRF_LOG_INFO("new h");
+      humidity_characteristic_update(&m_temp_service, &humidity);
+    }
     ret_code_t err_code = app_timer_start(m_main_timer_id, APP_TIMER_TICKS(1500), NULL);
     APP_ERROR_CHECK(err_code);
 }
@@ -110,14 +118,6 @@ static void timers_init(void)
     APP_ERROR_CHECK(err_code);
     err_code = app_timer_create(&m_second_timer_id, APP_TIMER_MODE_SINGLE_SHOT, second_timer_handler);
     APP_ERROR_CHECK(err_code);
-
-    /* YOUR_JOB: Create any timers to be used by the application.
-                 Below is an example of how to create a timer.
-                 For every new timer needed, increase the value of the macro APP_TIMER_MAX_TIMERS by
-                 one.
-       ret_code_t err_code;
-       err_code = app_timer_create(&m_app_timer_id, APP_TIMER_MODE_REPEATED, timer_timeout_handler);
-       APP_ERROR_CHECK(err_code); */
 }
 
 /**@brief Function for the GAP initialization.
@@ -137,10 +137,6 @@ static void gap_params_init(void)
                                           (const uint8_t *)DEVICE_NAME,
                                           strlen(DEVICE_NAME));
     APP_ERROR_CHECK(err_code);
-
-    /* YOUR_JOB: Use an appearance value matching the application's use case.
-       err_code = sd_ble_gap_appearance_set(BLE_APPEARANCE_);
-       APP_ERROR_CHECK(err_code); */
 
     memset(&gap_conn_params, 0, sizeof(gap_conn_params));
 
@@ -213,29 +209,6 @@ static void services_init(void)
     APP_ERROR_CHECK(err_code);
 
     temp_service_init(&m_temp_service);
-
-    /* YOUR_JOB: Add code to initialize the services used by the application.
-       ble_xxs_init_t                     xxs_init;
-       ble_yys_init_t                     yys_init;
-
-       // Initialize XXX Service.
-       memset(&xxs_init, 0, sizeof(xxs_init));
-
-       xxs_init.evt_handler                = NULL;
-       xxs_init.is_xxx_notify_supported    = true;
-       xxs_init.ble_xx_initial_value.level = 100;
-
-       err_code = ble_bas_init(&m_xxs, &xxs_init);
-       APP_ERROR_CHECK(err_code);
-
-       // Initialize YYY Service.
-       memset(&yys_init, 0, sizeof(yys_init));
-       yys_init.evt_handler                  = on_yys_evt;
-       yys_init.ble_yy_initial_value.counter = 0;
-
-       err_code = ble_yy_service_init(&yys_init, &yy_init);
-       APP_ERROR_CHECK(err_code);
-     */
 }
 
 /**@brief Function for handling the Connection Parameters Module.
@@ -612,6 +585,7 @@ int main(void)
     // Initialize.
     log_init();
     nrf_gpio_cfg_output(LED_1);
+    nrf_gpio_pin_write(LED_1, LED_1_ON);
     timers_init();
     power_management_init();
     ble_stack_init();
@@ -622,13 +596,16 @@ int main(void)
     conn_params_init();
     peer_manager_init();
     twi_manager_init();
-    hdc1080_init(&twi_mngr_instance, Temperature_Resolution_14_bit, Humidity_Resolution_14_bit, &temperature, &humidity, &temperatureInt);
+    hdc1080_init(&twi_mngr_instance, Temperature_Resolution_11_bit, Humidity_Resolution_8_bit, &temperature, &humidity, &temperatureInt);
     // Start execution.
     NRF_LOG_INFO("Temperature sensor with custom service started.");
     application_timers_start();
 
     advertising_start(erase_bonds);
-    err_code = app_timer_start(m_main_timer_id, APP_TIMER_TICKS(1500), NULL);
+    nrf_delay_ms(100);
+    err_code = app_timer_start(m_main_timer_id, APP_TIMER_TICKS(3000), NULL);
+    APP_ERROR_CHECK(err_code);
+    nrf_gpio_pin_write(LED_1, LED_1_OFF);
     // Enter main loop.
     for (;;)
     {

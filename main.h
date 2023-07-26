@@ -37,8 +37,6 @@
 
 // TWI
 #include "nrf_twi_mngr.h"
-#include "twi_mng_ds1307.h"
-#include "twi_mng_ssd1306.h"
 #include "twi_mng_hdc1080.h"
 
 // delay
@@ -46,7 +44,7 @@
 
 #define TWI_INSTANCE_ID 0
 
-#define DEVICE_NAME "TempSensorCUS"             /**< Name of device. Will be included in the advertising data. */
+#define DEVICE_NAME "TempSensor"                /**< Name of device. Will be included in the advertising data. */
 #define MANUFACTURER_NAME "NordicSemiconductor" /**< Manufacturer. Will be passed to Device Information Service. */
 #define APP_ADV_INTERVAL 300                    /**< The advertising interval (in units of 0.625 ms. This value corresponds to 187.5 ms). */
 

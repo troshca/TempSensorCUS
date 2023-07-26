@@ -13,6 +13,15 @@
 #include "twi_mng_hdc1080.h"
 #include "main.h"
 
+/*
+8.4 Device Functional Modes
+The HDC1080 has two modes of operation: sleep mode and measurement mode. After power up, the HDC1080
+is in sleep mode. In this mode, the HDC1080 waits for I2C input including commands to configure the conversion
+times, read the status of the battery, trigger a measurement, and read measurements. Once it receives a
+command to trigger a measurement, the HDC1080 moves from sleep mode to measurement mode. After
+completing the measurement the HDC1080 returns to sleep mode.
+*/
+
 static const nrf_twi_mngr_t *TWI_manager = NULL;
 uint8_t receive_data[4];
 volatile float *temp;
@@ -109,7 +118,7 @@ void hdc1080_start_measurement(float *temperature, uint8_t *humidity)
  * @param uint8_t Humidity
  * @return 0
  */
-static void HDC1080_CommandStartMeasuring()
+void HDC1080_CommandStartMeasuring()
 {
   ret_code_t err_code;
 
@@ -153,7 +162,7 @@ void HDC1080_ReadRegisters(ret_code_t result, void *p_user_data)
   HDC1080_Convert();
 }
 
-static void HDC1080_CommandReceiveData()
+void HDC1080_CommandReceiveData()
 {
   uint8_t send_data = Temperature_register_add;
 
@@ -170,12 +179,42 @@ static void HDC1080_CommandReceiveData()
   APP_ERROR_CHECK(nrf_twi_mngr_schedule(TWI_manager, &transaction));
 }
 
-void HDC1080_Start()
+/**
+ * @brief Control of heater of HDC1080
+ * @param m_twi User TWI handle pointer.
+ * @param bool enable heater 
+ */
+void HDC1080_ControlHeater(nrf_twi_mngr_t *nrf_twi_mngr_t, bool enableHeater)
 {
-  HDC1080_CommandStartMeasuring();
-}
+  ret_code_t err_code;
+  uint8_t data_send[2] = {0, 0};
 
-void HDC1080_ReceiveData()
-{
-  HDC1080_CommandReceiveData();
+  nrf_twi_mngr_transfer_t const read_transfer[] =
+      {
+          NRF_TWI_MNGR_READ(HDC_1080_ADD, &data_send, sizeof(data_send), NRF_TWI_MNGR_NO_STOP),
+      };
+  err_code = nrf_twi_mngr_perform(TWI_manager, NULL, read_transfer, 1, NULL);
+  APP_ERROR_CHECK(err_code);
+
+  if(enableHeater)
+  {
+    data_send[0] |= (1 << 5);
+  }
+  else
+  {
+    data_send[0] &= (0b11011111);
+  }
+
+  uint8_t buffer[1 + 2];
+  memset(buffer, Configuration_register_add, 1);
+  memcpy(buffer + 1, data_send, 2);
+  nrf_twi_mngr_transfer_t const write_transfer1[] =
+      {
+          NRF_TWI_MNGR_WRITE(HDC_1080_ADD, buffer, sizeof(buffer), NRF_TWI_MNGR_NO_STOP),
+      };
+  err_code = nrf_twi_mngr_perform(TWI_manager, NULL, write_transfer1, 1, NULL);
+  APP_ERROR_CHECK(err_code);
+
+  NRF_LOG_FLUSH();
+
 }

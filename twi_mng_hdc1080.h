@@ -21,11 +21,10 @@ typedef enum
   Humidity_Resolution_8_bit = 2
 } Humi_Reso;
 
-static void HDC1080_CommandStartMeasuring();
-static void HDC1080_CommandReceiveData();
-void HDC1080_Start();
-void HDC1080_ReceiveData();
+void HDC1080_CommandStartMeasuring();
+void HDC1080_CommandReceiveData();
 void hdc1080_init(nrf_twi_mngr_t *nrf_twi_mngr_t, Temp_Reso Temperature_Resolution_x_bit, Humi_Reso Humidity_Resolution_x_bit, volatile float *temperature, volatile uint8_t *humidity, volatile uint16_t *temperatureInt);
 void hdc1080_start_measurement(float *temperature, uint8_t *humidity);
+void HDC1080_ControlHeater(nrf_twi_mngr_t *nrf_twi_mngr_t, bool enableHeater);
 
 #endif // __HDC1080_H__
